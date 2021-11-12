@@ -13,10 +13,10 @@ var imageDirectory = "D:\\testtttttttttttt" //paste your img directory here,
 								//resized images will go into another folder called "resized"
 								//in the same parent directory as the original
 
-const files = async (filepath, newPath) => {
+const files = async (filepath, adjustedPath) => {
 	try {
 		await imagemin([filepath], {
-			destination: newPath,
+			destination: adjustedPath,
 			plugins: [
 				imageminMozJpeg(),
 				imageminPngquant({
@@ -55,16 +55,11 @@ ThroughDirectory(imageDirectory).then(async () => {
 				console.log(error)
 				counter++
 				errorFiles.push(Files[i])
-				console.log(`Error on file ${Files[i]}`)
-				console.log(`newPath: ${newPath}`)
-				console.log(`adjustedPath: ${adjustedPath}`)
+				console.log(`Error on file ${Files[i]}`);
+				console.log(`adjustedPath: ${adjustedPath}`);
 			})
 		}
 	}
 	console.log(errorFiles)
 	console.log(`Had an error with the above ${counter} files`)
 });
-
-
-
-//export default files
